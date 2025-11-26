@@ -2,13 +2,10 @@ import { useParams, Link } from 'react-router-dom'
 import { useAppState } from '../context/AppStateContext'
 import ComparadorCotizaciones from '../components/ComparadorCotizaciones'
 import { useSkeletonDelay } from '../hooks/useSkeletonDelay'
-import { useAuth } from '../context/AuthContext'
-import { convertToUSD } from '../data/initialData'
 
 const ServiceDetail = () => {
   const { id } = useParams<{ id: string }>()
   const { services, quotes, selectQuote, selectedQuotes } = useAppState()
-  const { currentUser } = useAuth()
   const service = services.find((s) => s.id === id)
   const isLoading = useSkeletonDelay([service?.id])
 
@@ -25,7 +22,6 @@ const ServiceDetail = () => {
 
   const serviceQuotes = quotes.filter((q) => q.serviceId === service.id)
   const selectedQuote = serviceQuotes.find((q) => q.id === selectedQuotes[service.id])
-  const isMyService = service.solicitanteId === currentUser?.id
 
   const estadoLabels: Record<string, string> = {
     PUBLICADO: 'Publicado',
