@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const switchUser = () => persistUser(null)
 
   /**
-   * useMemo: Memoizar el valor del Context para evitar re-renders innecesarios
+   * useMemo: Memorizar el valor del Context para evitar re-renders innecesarios
    * Solo se recalcula cuando cambia currentUser
    * isAuthenticated se calcula dinámicamente desde currentUser
    */
