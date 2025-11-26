@@ -1,0 +1,27 @@
+:root {
+  --color-primary: #10b5e8;
+  --color-primary-dark: #0b9bc7;
+  --color-secondary: #0b2234;
+  --color-text-main: #0b2234;
+  --color-text-muted: #5b6c80;
+  --color-bg-gradient-start: #e9fbff;
+  --color-bg-gradient-end: #ffffff;
+  --color-card-border: #e3ebf5;
+  --color-button-bg: #10b5e8;
+  --color-button-text: #0b2234;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow-card: 0 20px 40px rgba(11, 34, 52, 0.08);
+  --shadow-card-soft: 0 12px 30px rgba(15, 35, 52, 0.05);
+  --font-display: 'Inter', 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  font-family: var(--font-display);
+  background: #ffffff;
+  color: var(--color-text-main);
+}
+
+* {
+  box-sizing: border-box;
+}

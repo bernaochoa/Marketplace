@@ -1,0 +1,264 @@
+@import '../styles/theme.css';
+
+.home {
+  height: 100vh;
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 65%);
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.home__navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 999px;
+  padding: 18px 32px;
+  margin: 24px auto;
+  box-shadow: var(--shadow-card-soft);
+  max-width: 1100px;
+}
+
+.home__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.home__logo-icon {
+  font-size: 20px;
+  background: #f4f8fb;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+}
+
+.home__logo-text {
+  display: flex;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-text-main);
+}
+
+.home__logo-text span:last-child {
+  color: var(--color-primary);
+}
+
+.home__login {
+  border-radius: 999px;
+  border: 1px solid rgba(15, 34, 52, 0.15);
+  padding: 10px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-text-main);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home__login:hover {
+  background: rgba(16, 181, 232, 0.08);
+  box-shadow: var(--shadow-card-soft);
+}
+
+.home__hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.home__hero-content h1 {
+  font-size: clamp(2.5rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  margin: 24px 0 18px;
+}
+
+.home__hero-content h1 span {
+  color: var(--color-primary);
+}
+
+.home__hero-content p {
+  color: var(--color-text-muted);
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.home__badge {
+  display: inline-flex;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(16, 181, 232, 0.12);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.home__roles {
+  list-style: none;
+  margin: 32px 0 24px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.home__roles li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.home__roles-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  position: relative;
+}
+
+.home__roles-icon::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--color-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.home__cta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+}
+
+.home__cta a {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow-card-soft);
+}
+
+.home__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home__card,
+.home__card--large {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(15, 34, 52, 0.05);
+}
+
+.home__card h3,
+.home__card--large h3 {
+  margin: 18px 0 8px;
+  font-size: 1.25rem;
+}
+
+.home__card p,
+.home__card--large p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.home__card--large {
+  min-height: 260px;
+}
+
+.home__card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.benefit-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--color-secondary);
+}
+
+.benefit-icon--blue {
+  background: rgba(16, 181, 232, 0.12);
+  color: #0b6b94;
+}
+
+.benefit-icon--teal {
+  background: rgba(14, 165, 145, 0.12);
+  color: #0a7b66;
+}
+
+.benefit-icon--orange {
+  background: rgba(255, 159, 90, 0.15);
+  color: #c25607;
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 0 4vw;
+  }
+
+  .home__navbar {
+    position: static;
+    border-radius: 20px;
+  }
+
+  .home__hero {
+    grid-template-columns: 1fr;
+    padding: 16px 0;
+    gap: 24px;
+  }
+
+  .home__hero-content h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    margin: 16px 0 12px;
+  }
+
+  .home__hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .home__roles {
+    margin: 24px 0 16px;
+    gap: 10px;
+  }
+
+  .home__card,
+  .home__card--large {
+    padding: 20px;
+  }
+
+  .home__card h3,
+  .home__card--large h3 {
+    font-size: 1.1rem;
+  }
+}

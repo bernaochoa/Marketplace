@@ -1,0 +1,230 @@
+@import '../styles/theme.css';
+
+.role-selection {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 70%);
+  overflow-y: auto;
+}
+
+.role-selection__shell {
+  width: min(1100px, 100%);
+  max-width: 100%;
+  background: #fff;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: visible;
+}
+
+.role-selection__back {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.role-selection__back span:first-child {
+  font-size: 1.4rem;
+}
+
+.role-selection__mark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.role-selection__heading {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.role-selection__heading h1 {
+  margin: 8px 0 4px;
+  font-size: 1.75rem;
+}
+
+.role-selection__heading p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.role-selection__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}
+
+.role-card {
+  border: 2px solid var(--color-card-border);
+  border-radius: 20px;
+  background: #fff;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  font: inherit;
+  position: relative;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.role-card__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: rgba(16, 181, 232, 0.08);
+  display: grid;
+  place-items: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.role-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.role-card h3 {
+  margin: 0;
+  color: var(--color-text-main);
+  font-size: 1.1rem;
+}
+
+.role-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-soft);
+}
+
+.role-card--blue {
+  border-color: rgba(16, 181, 232, 0.5);
+}
+
+.role-card--orange {
+  border-color: rgba(255, 159, 90, 0.7);
+}
+
+.role-card--green {
+  border-color: rgba(16, 185, 129, 0.7);
+}
+
+.role-card--orange .role-card__icon {
+  background: rgba(255, 159, 90, 0.15);
+  color: #c6580e;
+}
+
+.role-card--green .role-card__icon {
+  background: rgba(16, 185, 129, 0.15);
+  color: #0f8c60;
+}
+
+@media (max-width: 768px) {
+  .role-selection {
+    padding: 12px;
+    min-height: calc(100vh - 70px);
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .role-selection__shell {
+    padding: 20px 16px;
+    gap: 14px;
+    max-height: none;
+    margin: auto;
+  }
+  
+  .role-selection__back {
+    font-size: 0.85rem;
+  }
+  
+  .role-selection__mark {
+    width: 60px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .role-selection__heading {
+    flex-shrink: 0;
+  }
+  
+  .role-selection__heading h1 {
+    font-size: 1.25rem;
+    margin: 6px 0 3px;
+  }
+  
+  .role-selection__heading p {
+    font-size: 0.85rem;
+  }
+  
+  .role-selection__grid {
+    gap: 12px;
+    grid-template-columns: 1fr;
+    flex: 0 1 auto;
+    min-height: auto;
+    overflow: visible;
+  }
+  
+  .role-card {
+    padding: 16px 14px;
+    gap: 10px;
+    min-height: 140px;
+    width: 100%;
+  }
+  
+  .role-card:active {
+    transform: scale(0.98);
+  }
+  
+  .role-card__icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .role-card__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .role-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .role-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
