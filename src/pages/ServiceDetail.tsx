@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useAppState } from '../context/AppStateContext'
 import ComparadorCotizaciones from '../components/ComparadorCotizaciones'
@@ -8,6 +9,27 @@ const ServiceDetail = () => {
   const { services, quotes, selectQuote, selectedQuotes } = useAppState()
   const service = services.find((s) => s.id === id)
   const isLoading = useSkeletonDelay([service?.id])
+
+  /**
+   * MOUNT: Se ejecuta SOLO UNA VEZ cuando el componente se monta
+   * Array vacío [] = solo en mount/unmount
+   * 
+   * Ejemplos de uso:
+   * - Scroll al inicio de la página
+   * - Registrar visita/analytics
+   * - Cargar datos iniciales
+   * - Inicializar suscripciones
+   */
+  useEffect(() => {
+    // Scroll suave al inicio cuando el componente se monta
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    console.log('ServiceDetail montado - servicio:', id)
+    
+    // CLEANUP: Se ejecuta cuando el componente se desmonta
+    return () => {
+      console.log('ServiceDetail desmontado - limpiando recursos')
+    }
+  }, []) // Array vacío = MOUNT puro (solo una vez)
 
   if (!service) {
     return (
