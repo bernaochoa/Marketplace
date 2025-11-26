@@ -1,8 +1,20 @@
+// Imports de React Router para navegación
 import { Link } from 'react-router-dom'
+// Componente Header para mostrar la barra de navegación
 import Header from '../components/Header'
+// Context para verificar si el usuario está autenticado
 import { useAuth } from '../context/AuthContext'
+// Estilos CSS específicos de la página Home
 import './Home.css'
 
+/**
+ * Array de beneficios del marketplace
+ * Cada objeto contiene:
+ * - title: Título del beneficio
+ * - body: Descripción del beneficio
+ * - color: Clase CSS para el color del ícono
+ * - icon: Componente SVG del ícono
+ */
 const benefits = [
   {
     title: 'Gestión completa',
@@ -59,24 +71,51 @@ const benefits = [
   },
 ]
 
+/**
+ * Array de roles disponibles en el marketplace
+ * Se muestra en la lista de roles de la página principal
+ */
 const roles = ['Solicitantes', 'Proveedores de servicio', 'Proveedores de insumos']
 
+/**
+ * Componente Home
+ * 
+ * Página principal (landing page) del marketplace.
+ * Muestra:
+ * - Header con navegación
+ * - Hero section con información principal
+ * - Lista de roles disponibles
+ * - Tarjetas de beneficios del marketplace
+ */
 const Home = () => {
+  // Obtener estado de autenticación del Context
+  // Se usa para mostrar/ocultar elementos según si el usuario está logueado
   const { isAuthenticated } = useAuth()
 
   return (
     <div className="home">
+      {/* Header con navegación - recibe el estado de autenticación */}
       <Header isAuthenticated={isAuthenticated} />
+      
+      {/* Contenido principal de la página */}
       <main className="home__hero">
+        {/* Sección izquierda: Contenido principal del hero */}
         <section className="home__hero-content">
+          {/* Badge superior */}
           <span className="home__badge">Conectando oportunidades</span>
+          
+          {/* Título principal */}
           <h1>
             El marketplace que conecta <span>servicios e insumos</span>
           </h1>
+          
+          {/* Descripción del marketplace */}
           <p>
             ServiciosMarket centraliza los procesos de compra pública y privada para que equipos de solicitantes y
             proveedores colaboren con información clara, tiempos ágiles y trazabilidad desde el primer contacto.
           </p>
+          
+          {/* Lista de roles disponibles */}
           <ul className="home__roles">
             {roles.map((role) => (
               <li key={role}>
@@ -85,16 +124,23 @@ const Home = () => {
               </li>
             ))}
           </ul>
+          
+          {/* Botón de llamada a la acción (CTA) */}
           <div className="home__cta">
             <Link to="/seleccionar-rol">Explorar roles</Link>
           </div>
         </section>
+
+        {/* Sección derecha: Tarjetas de beneficios */}
         <section className="home__cards" aria-label="Beneficios del marketplace">
+          {/* Tarjeta grande: Primer beneficio */}
           <article className="home__card home__card--large">
             <div className={`benefit-icon ${benefits[0].color}`}>{benefits[0].icon}</div>
             <h3>{benefits[0].title}</h3>
             <p>{benefits[0].body}</p>
           </article>
+          
+          {/* Grid con los demás beneficios (slice(1) omite el primero) */}
           <div className="home__card-grid">
             {benefits.slice(1).map((benefit) => (
               <article key={benefit.title} className="home__card">

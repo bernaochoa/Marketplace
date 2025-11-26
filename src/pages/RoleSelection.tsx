@@ -1,14 +1,30 @@
+// Imports de React y hooks
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+// Imports de React Router para navegación
 import { Link } from 'react-router-dom'
+// Componentes de la aplicación
 import Header from '../components/Header'
 import LoginModal from '../components/LoginModal'
 import SkeletonList from '../components/SkeletonList'
+// Context para verificar autenticación
 import { useAuth } from '../context/AuthContext'
+// Hook personalizado para mostrar skeleton loading
 import { useSkeletonDelay } from '../hooks/useSkeletonDelay'
+// Tipos TypeScript
 import type { UserRole } from '../data/initialData'
+// Estilos CSS específicos de la página
 import './RoleSelection.css'
 
+/**
+ * Array de roles disponibles en el marketplace
+ * Cada rol contiene:
+ * - id: Identificador único del rol (UserRole)
+ * - title: Título del rol
+ * - description: Descripción de qué hace ese rol
+ * - accent: Clase CSS para el color de acento
+ * - icon: Componente SVG del ícono del rol
+ */
 const roles: Array<{
   id: UserRole
   title: string
@@ -70,38 +86,78 @@ const roles: Array<{
   },
 ]
 
+/**
+ * Componente RoleSelection
+ * 
+ * Página para seleccionar el rol de usuario antes de iniciar sesión.
+ * Permite elegir entre:
+ * - SOLICITANTE: Publica y gestiona servicios/insumos necesarios
+ * - PROVEEDOR_SERVICIO: Ofrece servicios profesionales
+ * - PROVEEDOR_INSUMOS: Vende materiales y packs
+ * 
+ * Al seleccionar un rol, se abre un modal de login específico para ese rol.
+ */
 const RoleSelection = () => {
+  // Obtener estado de autenticación del Context
   const { isAuthenticated } = useAuth()
+  
+  // Estado local para el rol seleccionado (null si no hay ninguno)
+  // Cuando se selecciona un rol, se muestra el modal de login
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(null)
+  
+  // Hook personalizado que muestra skeleton loading durante 800ms
+  // Array vacío [] = solo se ejecuta al montar
   const isLoading = useSkeletonDelay([])
 
+  /**
+   * Maneja la selección de un rol
+   * Actualiza el estado para mostrar el modal de login
+   * 
+   * @param role - Rol seleccionado por el usuario
+   */
   const handleSelect = (role: UserRole) => {
     setSelectedRole(role)
   }
 
+  /**
+   * Maneja el cierre del modal de login
+   * Limpia el estado del rol seleccionado
+   */
   const handleCloseModal = () => {
     setSelectedRole(null)
   }
 
   return (
     <>
+      {/* Header con navegación */}
       <Header isAuthenticated={isAuthenticated} />
+      
+      {/* Renderizado condicional: skeleton loading o contenido */}
       {isLoading ? (
+        // Mostrar skeleton mientras se carga
         <SkeletonList variant="role-selection" />
       ) : (
+        // Contenido principal de selección de roles
         <div className="role-selection">
           <div className="role-selection__shell">
+            {/* Botón para volver al inicio */}
             <Link to="/" className="role-selection__back">
               <span aria-hidden="true">&larr;</span>
               <span>Volver al inicio</span>
             </Link>
+            
+            {/* Marca/logo del marketplace */}
             <div className="role-selection__mark" aria-hidden="true">
               SM
             </div>
+            
+            {/* Título y descripción */}
             <div className="role-selection__heading">
               <h1>Bienvenido a ServiciosMarket</h1>
               <p>Selecciona tu rol para continuar</p>
             </div>
+            
+            {/* Grid de tarjetas de roles */}
             <div className="role-selection__grid">
               {roles.map((role) => (
                 <button
@@ -109,10 +165,12 @@ const RoleSelection = () => {
                   type="button"
                   className={`role-card ${role.accent}`}
                   onClick={() => handleSelect(role.id)}
+                  // Mejora la respuesta táctil en dispositivos móviles
+                  // Reduce la opacidad al tocar para dar feedback visual
                   onTouchStart={(e) => {
-                    // Mejora la respuesta táctil en móvil
                     e.currentTarget.style.opacity = '0.8'
                   }}
+                  // Restaura la opacidad al soltar
                   onTouchEnd={(e) => {
                     e.currentTarget.style.opacity = '1'
                   }}
@@ -126,6 +184,8 @@ const RoleSelection = () => {
           </div>
         </div>
       )}
+      
+      {/* Modal de login - solo se muestra si hay un rol seleccionado */}
       {selectedRole && <LoginModal role={selectedRole} onClose={handleCloseModal} />}
     </>
   )
